@@ -1,6 +1,12 @@
 import customtkinter as ctk
+from tkinter import PhotoImage
+from PIL import Image
 
 class PrincipalView:
+
+    #Global variables
+
+    left_column = None
 
     def __init__(self):
         self.runAppInterface()  # Debe ser llamado como un método de instancia
@@ -23,17 +29,41 @@ class PrincipalView:
         left_column.pack(side="left", fill="y", padx=0, pady=0)  # Columna izquierda ocupa toda la altura
 
         #Frame de categorias a la derecha
+
+
         categoriesFrame = ctk.CTkFrame(app, width=370 ,fg_color="green")
         categoriesFrame.pack(side="right", fill="y", padx=0, pady=0)
 
         # Crear el segundo frame (frame para mostrar la imagen del plano)
-        planeFrame = ctk.CTkFrame(app, height=400, width=900, fg_color="black")
+
+
+        planeFrame = ctk.CTkFrame(app, height=400, width=900, fg_color="transparent")
         planeFrame.pack(anchor='nw', padx=0, pady=0)  # Relativo al ancho y alto de la ventana nw = north west
+
+
+        my_image = ctk.CTkImage(light_image=Image.open("../Images/pngwing.com.png"), size=(850, 350))
+
+        image_label = ctk.CTkLabel(planeFrame, image=my_image, text="")  # display image with a CTkLabel
+
+        image_label.pack(padx=0, pady=0)
+
 
         #Tercer frame debajo del plano
 
-        shopFrame = ctk.CTkFrame(app, height=250, width=900, fg_color="blue")
+        shopFrame = ctk.CTkFrame(app, height=250, width=900, fg_color="transparent")
         shopFrame.pack(anchor = 'sw', padx=0, pady=0)
+
+
+        image = PhotoImage(file="../Images/estacion-de-carga.png")
+        image = image.subsample(5)  # Redimensionar la imagen a la mitad
+        buttonIcon = ctk.CTkButton(master=shopFrame, text="", command=button_function, image=image, fg_color="transparent", width=80, height=80)
+        buttonIcon.pack(side="left", padx=5, pady=5) #establecemos el side a left para que los botones se distribullan horizontalmente
+
+        imageToilet = PhotoImage(file="../Images/macho-femenino.png")
+        imageToilet = imageToilet.subsample(5)  # Redimensionar la imagen a la mitad
+        buttonIcon2 = ctk.CTkButton(master=shopFrame, text="", command=button_function, image=imageToilet, fg_color="transparent", width=80, height=80)
+        buttonIcon2.pack(side="left", padx=5, pady=5)
+        
 
         #Frame de categorias a la izquierda
 
