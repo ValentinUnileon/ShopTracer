@@ -4,19 +4,26 @@ from PIL import Image
 
 class PrincipalView:
 
-    #Global variables
+    buttonIcon = None  
+     #CONSTRUCTOR de la clase - se le pasa como argumento el controlador
 
-    left_column = None
+    def __init__(self, viewController): 
+        self.viewController = viewController
+        self.image_label = None
+        self.left_column = None
+        self.planeFrame = None
 
-    def __init__(self):
         self.runAppInterface()  # Debe ser llamado como un método de instancia
 
+    def controllerData(self):
+        return self.viewController.getNum()
+    
     def runAppInterface(self):  # Agregar self como primer argumento
 
         #Creacion de la pantalla principal
-        ctk.set_appearance_mode("System")  # Modes: system (default), light, dark
-        ctk.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
-        app = ctk.CTk()  # create CTk window like you do with the Tk window
+        ctk.set_appearance_mode("System")           # Modes: system (default), light, dark
+        ctk.set_default_color_theme("blue")         # Themes: blue (default), dark-blue, green
+        app = ctk.CTk()                             # create CTk window like you do with the Tk window
         app.geometry("1420x650")
 
 
@@ -25,8 +32,9 @@ class PrincipalView:
 
 
         # Crear el primer frame (columna izquierda)
+            
         left_column = ctk.CTkFrame(app, width=350)
-        left_column.pack(side="left", fill="y", padx=0, pady=0)  # Columna izquierda ocupa toda la altura
+        left_column.pack(side="left", fill="y", padx=0, pady=0)     # Columna izquierda ocupa toda la altura
 
         #Frame de categorias a la derecha
 
@@ -38,14 +46,15 @@ class PrincipalView:
 
 
         planeFrame = ctk.CTkFrame(app, height=400, width=900, fg_color="transparent")
-        planeFrame.pack(anchor='nw', padx=0, pady=0)  # Relativo al ancho y alto de la ventana nw = north west
+        planeFrame.pack(anchor='nw', padx=0, pady=0)  # Relativo al ancho y alto de la ventana nw = north west padx y pady separaciones
 
+            #se establece la imagen del plano
 
-        my_image = ctk.CTkImage(light_image=Image.open("../Images/pngwing.com.png"), size=(850, 350))
+        plan = ctk.CTkImage(light_image=Image.open("../Images/pngwing.com.png"), size=(850, 400))
 
-        image_label = ctk.CTkLabel(planeFrame, image=my_image, text="")  # display image with a CTkLabel
+        self.image_label = ctk.CTkLabel(planeFrame, image=plan, text="")     # display image with a CTkLabel
 
-        image_label.pack(padx=0, pady=0)
+        self.image_label.pack(padx=0, pady=0)
 
 
         #Tercer frame debajo del plano
@@ -55,19 +64,22 @@ class PrincipalView:
 
 
         image = PhotoImage(file="../Images/estacion-de-carga.png")
-        image = image.subsample(5)  # Redimensionar la imagen a la mitad
-        buttonIcon = ctk.CTkButton(master=shopFrame, text="", command=button_function, image=image, fg_color="transparent", width=80, height=80)
-        buttonIcon.pack(side="left", padx=5, pady=5) #establecemos el side a left para que los botones se distribullan horizontalmente
+        image = image.subsample(5)                                      # Redimensionar la imagen a la mitad
+
+        self.buttonIcon = ctk.CTkButton(master=shopFrame, text="", command=lambda: self.viewController.press(self.image_label), image=image, fg_color="transparent", width=80, height=80)
+        
+        #establecemos el side a left para que los botones se distribullan horizontalmente
+        
+        self.buttonIcon.pack(side="left", padx=5, pady=5) 
 
         imageToilet = PhotoImage(file="../Images/macho-femenino.png")
         imageToilet = imageToilet.subsample(5)  # Redimensionar la imagen a la mitad
-        buttonIcon2 = ctk.CTkButton(master=shopFrame, text="", command=button_function, image=imageToilet, fg_color="transparent", width=80, height=80)
+
+        buttonIcon2 = ctk.CTkButton(master=shopFrame, text="", command=self.viewController.press, image=imageToilet, fg_color="transparent", width=80, height=80)
         buttonIcon2.pack(side="left", padx=5, pady=5)
         
 
         #Frame de categorias a la izquierda
-
-
 
         # El valor de relx indica la posición en el eje x relativa al ancho total de la ventana.
         # El valor de relwidth indica el ancho relativo al ancho total de la ventana.
@@ -85,3 +97,10 @@ class PrincipalView:
         textbox.insert("0.0", "Some example text!\n")
 
         app.mainloop()
+
+      
+
+ 
+
+
+
