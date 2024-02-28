@@ -75,7 +75,7 @@ class PrincipalView:
         imageToilet = PhotoImage(file="../Images/macho-femenino.png")
         imageToilet = imageToilet.subsample(5)  # Redimensionar la imagen a la mitad
 
-        buttonIcon2 = ctk.CTkButton(master=shopFrame, text="", command=self.viewController.press, image=imageToilet, fg_color="transparent", width=80, height=80)
+        buttonIcon2 = ctk.CTkButton(master=shopFrame, text="", command=lambda: self.viewController.press(self.image_label), image=imageToilet, fg_color="transparent", width=80, height=80)
         buttonIcon2.pack(side="left", padx=5, pady=5)
         
 
