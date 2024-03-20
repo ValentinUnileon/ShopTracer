@@ -16,9 +16,13 @@ if __name__ == "__main__":
     conexion = Conexion()
 
     
-    cosa= FloorDAO()
+    floorDAO= FloorDAO()
 
-    cosa.getFloorObject(1)
+    floor= floorDAO.getFloorObject(1)
+
+    print("mira  ", floor.getFloorImage())
+
+
     principal_view = PrincipalView(controller)  
     controller.setView(principal_view)
 

@@ -23,9 +23,22 @@ class FloorDAO:
             cursor = mydb.cursor()
             cursor.execute("SELECT * FROM floor WHERE floor_id=%s", (idFloor,))
             resultados = cursor.fetchall()
-            for row in resultados:
-                print(row)
-                
+
+
+            floor.setFloorID(resultados[0][0])
+            floor.setFloorNumber(resultados[0][1])
+            floor.setFloorImage(resultados[0][2])
+
         except mysql.connector.Error as err:
-            print("Error al ejecutar la consulta SQL:", err)
+
+            #Check if the object is in the database
+            print("Error", err)
+
+        return floor
+
+    def setFloorObject(self, floorVO):
+
+        #first check if the object is in the database to be able to delete it 
+        
+
 
