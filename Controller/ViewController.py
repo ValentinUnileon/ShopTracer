@@ -10,7 +10,6 @@ from PrincipalView import PrincipalView
 class ViewController:
 
     def __init__(self):
-        print("afsd")
         self.principal_view = None  # Corrección del nombre del atributo
     
     def setView(self, view):

@@ -3,26 +3,36 @@ import mysql.connector
 
 class Conexion:
 
+
     def __init__(self):
 
+        pass
+
+    def getDatabaseConexion(self):
+
         mydb = mysql.connector.connect(
-            host="localhost",
+            host="127.0.0.1",
             user="root",
-            password="1234",
+            #password is not needed
             database="shoptracedatabase"
         )
+        
+        # Crear un cursor
+        #mycursor = mydb.cursor()
 
         print("Conexión exitosa!")
 
-        # Crear un cursor
-        mycursor = mydb.cursor()
+        return mydb
+
+        
+
 
         # Ejecutar una consulta SQL
-        mycursor.execute("SELECT * FROM category")
+        #self.mycursor.execute("SELECT * FROM shop")
 
         # Obtener los resultados
-        resultados = mycursor.fetchall()
+        #resultados = self.mycursor.fetchall()
 
         # Imprimir los resultados
-        for fila in resultados:
-            print(fila)
+        #for fila in resultados:
+        #    print(fila)
