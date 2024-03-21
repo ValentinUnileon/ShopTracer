@@ -7,6 +7,7 @@ from PrincipalView import PrincipalView
 from ViewController import ViewController
 from Conexion import Conexion
 from DAO.FloorDAO import FloorDAO
+from VO.FloorVO import FloorVO
 
 
 if __name__ == "__main__":
@@ -18,9 +19,17 @@ if __name__ == "__main__":
     
     floorDAO= FloorDAO()
 
-    floor= floorDAO.getFloorObject(1)
+    #floor= floorDAO.getFloorObject(1)
 
-    print("mira  ", floor.getFloorImage())
+    #print("mira  ", floor.getFloorImage())
+
+    floorVO = FloorVO()
+    floorVO.setFloorID("2")
+    floorVO.setFloorNumber("1")
+    floorVO.setFloorImage("nose")
+
+    floorDAO.createFloorObject(floorVO)
+
 
 
     principal_view = PrincipalView(controller)  
