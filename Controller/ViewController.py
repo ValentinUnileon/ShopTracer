@@ -18,9 +18,8 @@ class ViewController:
     def press(self, label):
         print("FUNCIONA")
 
-        image = PhotoImage(file="../Images/estacion-de-carga.png")
         #print(self.principal_view)
-        plan = ctk.CTkImage(light_image=Image.open("../Images/estacion-de-carga.png"), size=(850, 400))
+        plan = ctk.CTkImage(light_image=Image.open("../Images/planModified.png"), size=(850, 400))
         label.configure(image=plan)
         label.pack(padx=0, pady=0)
 

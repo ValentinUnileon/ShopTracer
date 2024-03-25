@@ -53,9 +53,9 @@ class PrincipalView:
 
             #Campo de texto dentro del frame
 
-        textbox = ctk.CTkTextbox(master=left_column, width=200, corner_radius=0, fg_color="transparent")
-        textbox.grid(row=0, column=0, sticky="nsew")
-        textbox.insert("0.0", "Some example text!\n")
+        #textbox = ctk.CTkTextbox(master=left_column, width=200, corner_radius=0, fg_color="transparent")
+        #textbox.grid(row=0, column=0, sticky="nsew")
+        #textbox.insert("0.0", "Some example text!\n")
 
         self.label_hora = ctk.CTkLabel(left_column, font=('Roboto', 48), fg_color='transparent')
         self.label_hora.grid(row=0, column=0, padx=10, pady=10)
@@ -64,15 +64,15 @@ class PrincipalView:
         self.update_hour()
 
 
-
-
-
-
         #Frame de categorias a la derecha
 
 
-        categoriesFrame = ctk.CTkFrame(self.app, width=370 ,fg_color="green")
+        categoriesFrame = ctk.CTkFrame(self.app, width=370 ,fg_color="transparent")
         categoriesFrame.pack(side="right", fill="y", padx=0, pady=0)
+
+        entry = ctk.CTkEntry(master=categoriesFrame,width=370, placeholder_text="Introduce something")
+        entry.pack(side="top", fill="x", padx=0, pady=20)
+
 
         # Crear el segundo frame (frame para mostrar la imagen del plano)
 
@@ -116,9 +116,6 @@ class PrincipalView:
         # El valor de relx indica la posición en el eje x relativa al ancho total de la ventana.
         # El valor de relwidth indica el ancho relativo al ancho total de la ventana.
         # El valor de relheight indica la altura relativa al alto total de la ventana.
-
-
-
 
 
         self.app.mainloop()
